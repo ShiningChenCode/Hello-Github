@@ -1,0 +1,59 @@
+Git学习笔记
+
+一.Git概念：
+1.与GitHub不是同一概念，GitHub可以理解为一个Git服务器。
+2.Git与其他版本控制系统的区别。
+
+二.Git使用（跳过注册安装）
+ 1.本地使用(不联网）
+   a.创建工作环境（版本库/repository)
+	 相关指令：git init
+   b.提交修改
+	 相关指令：git add, git rm , git commit
+
+	 辅助查看指令：git status, git branch, git log, git remote,git tag
+   
+需要理解工作区与暂存区
+git add,git rm是将工作区修改放到暂存区中,再由git commit将暂存区中所有修改提交
+
+git checkout -- file 是丢弃工作区的修改（回到最近的git commit或git add状态）
+
+	c.创建分支：git branch dev 
+	  切换分支:git checkout dev
+	  创建并切换分支：git branch -b dev
+	  删除还未合并的分支：git branch -D feature-vulcan
+	  
+	d.合并分支：git merge dev
+	   合并分支模式：Fast forward(删除分支后，没有分支历史记录)  默认方式
+	                 --no-ff（合并后，自动commit,可以在历史记录中查看） 如git merge --no-ff -m "merge with no-ff" dev
+					 
+       若合并冲突：修改冲突文件，再次提交
+	e.存储当前工作现场（需要添加新的分支，但当前工作还未完成）
+	  存储：git stash 
+	  恢复：git stash apply 
+	  删除: git stash drop
+	  恢复并删除：git stash pop
+	  
+	f.版本回退：git reset --hard HEAD^ (上个版本)
+	            git reset --hard HEAD^^ (上上个版本)
+				git reset --hard 3625  （指定版本）
+	  
+ 2.使用远程仓库，多人协作
+    克隆远程库：git clone
+	推送分支：git push
+	抓取分支：git clone(抓取主分支) 
+	          git checkout -b dev origin/dev (抓取dev分支)
+			  
+	推送失败：把推送最新的pull下来 git pull(需先对应分支：git branch --set-upstream dev origin/dev)
+	          解决冲突，再重新推送
+	
+ 3.忽略特殊文件：
+    在Git工作区的根目录下，创建特殊的.gitignore文件，把要忽略的文件名填进去
+	
+	 
+		
+	  
+	  
+
+	
+
